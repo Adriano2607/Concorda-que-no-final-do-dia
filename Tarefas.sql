@@ -104,29 +104,31 @@ SHOW TABLES;
 -- ======================================================================================================================
 -- 12 - Criar cinco savepoints.
 start transaction;
+
+savepoint atalho1;
 CREATE TABLE chassi2 (
   idChassi int NOT NULL AUTO_INCREMENT primary key,
   Numero_do_chassi CHAR(25) NOT NULL
 );
-savepoint atalho1;
 
 
+savepoint atalho2;
 CREATE TABLE placa2 (
   idPlaca int NOT NULL AUTO_INCREMENT primary key,
   Placa NVARCHAR(20) NOT NULL,
   Número_de_Série CHAR(25) NOT NULL,
   Estampador CHAR(20) NOT NULL
 );
-savepoint atalho2;
 
+savepoint atalho3;
 CREATE TABLE opcionais3 (
   idOpcionais int NOT NULL AUTO_INCREMENT primary key,
   Ar_condicionado CHAR(10),
   Direção_hidráulica CHAR(10),
   Pintura CHAR(20)
 ) ;
-savepoint atalho3;
 
+savepoint atalho4;
 CREATE TABLE fabricante4 (
   idFabricante int NOT NULL AUTO_INCREMENT primary key,
   CNPJ CHAR(25) ,
@@ -134,10 +136,10 @@ CREATE TABLE fabricante4 (
   Modelo_idModelo int NOT NULL,
   CONSTRAINT fk_Fabricante_Modelo1 FOREIGN KEY (Modelo_idModelo) REFERENCES modelo (idModelo) ON DELETE CASCADE
 );
-savepoint atalho4;
 
-insert into placa values (16,'ERD-0145','00523042007-B','Mercosul');
 savepoint atalho5;
+insert into placa values (16,'ERD-0145','00523042007-B','Mercosul');
+
 
 ROLLBACK TO atalho1;
 ROLLBACK TO atalho2;
